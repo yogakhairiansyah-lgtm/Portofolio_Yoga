@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Yoga Khairiansyah — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#161616;color:#f4f4f4;font-family:'IBM Plex Sans',sans-serif;font-size:14px;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.mono{font-family:'IBM Plex Mono',monospace}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:48px;background:#161616;border-bottom:1px solid #393939;display:flex;align-items:center;padding:0 2rem}
+.nav-brand{font-size:14px;font-weight:500;color:#f4f4f4;letter-spacing:.02em;margin-right:3rem}
+.nav-links{display:flex;gap:0}
+.nav-links a{font-size:13px;color:#c6c6c6;padding:0 1rem;height:48px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all .15s}
+.nav-links a:hover{color:#f4f4f4;background:#262626;border-bottom-color:#0f62fe}
+.main{padding-top:48px}
+.hero{background:#161616;padding:6rem 2rem 5rem;border-bottom:1px solid #393939}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
+.hero-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6f6f;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem}
+.hero-name{font-size:clamp(2rem,5vw,3.5rem);font-weight:300;line-height:1.1;letter-spacing:-.01em;color:#f4f4f4;margin-bottom:.75rem}
+.hero-name strong{font-weight:600;color:#fff}
+.hero-role{font-size:16px;font-weight:300;color:#c6c6c6;margin-bottom:2rem;line-height:1.5}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:0 1.25rem;height:40px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.btn-primary{background:#0f62fe;color:#fff;border:1px solid #0f62fe}
+.btn-primary:hover{background:#0353e9;border-color:#0353e9}
+.btn-ghost{background:transparent;color:#f4f4f4;border:1px solid #f4f4f4}
+.btn-ghost:hover{background:#f4f4f4;color:#161616}
+.hero-meta{display:flex;flex-direction:column;gap:1.5rem;padding-left:2rem;border-left:1px solid #393939}
+.hero-meta-label{font-size:11px;color:#6f6f6f;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;font-family:'IBM Plex Mono',monospace}
+.hero-meta-val{font-size:14px;color:#f4f4f4;font-weight:400}
+.hero-meta-val.blue{color:#78a9ff}
+.section{padding:4rem 2rem;border-bottom:1px solid #393939}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3rem;padding-bottom:1rem;border-bottom:1px solid #393939}
+.section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6f6f;letter-spacing:.12em}
+.section-title{font-size:20px;font-weight:300;color:#f4f4f4;letter-spacing:-.01em}
+.about-grid{display:grid;grid-template-columns:2fr 1fr;gap:4rem}
+.about-body{font-size:15px;font-weight:300;color:#c6c6c6;line-height:1.8}
+.about-body p{margin-bottom:1.25rem}
+.about-body strong{color:#f4f4f4;font-weight:500}
+.about-facts{display:flex;flex-direction:column;gap:0}
+.fact-row{padding:.85rem 0;border-bottom:1px solid #393939;display:grid;grid-template-columns:1fr 1.5fr}
+.fact-row:first-child{border-top:1px solid #393939}
+.fact-label{font-size:11px;color:#6f6f6f;text-transform:uppercase;letter-spacing:.1em;font-family:'IBM Plex Mono',monospace;padding-top:2px}
+.fact-val{font-size:13px;color:#c6c6c6}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #393939}
+.skill-col{padding:2rem}
+.skill-col:first-child{border-right:1px solid #393939}
+.skill-col-title{font-size:11px;color:#6f6f6f;letter-spacing:.12em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;margin-bottom:1.5rem}
+.skill-row{margin-bottom:1.5rem}
+.skill-row:last-child{margin-bottom:0}
+.skill-info{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem}
+.skill-name{font-size:13px;color:#f4f4f4;font-weight:400}
+.skill-pct{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6f6f}
+.skill-track{height:2px;background:#393939}
+.skill-fill{height:100%;background:#0f62fe;width:0;transition:width 1.2s ease}
+.skill-fill.warm{background:#ff832b}
+.tags-wrap{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:.25rem .6rem;border:1px solid #393939;color:#8d8d8d;letter-spacing:.04em}
+.projects-list{display:flex;flex-direction:column;gap:0}
+.project-row{display:grid;grid-template-columns:120px 1fr auto;gap:2rem;align-items:start;padding:2rem 0;border-bottom:1px solid #393939;transition:background .15s}
+.project-row:first-child{border-top:1px solid #393939}
+.project-row:hover{background:#1c1c1c}
+.project-idx{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6f6f;padding-top:3px}
+.project-badge{display:inline-flex;align-items:center;font-size:10px;font-family:'IBM Plex Mono',monospace;padding:.15rem .5rem;background:#0a3c7e;color:#78a9ff;letter-spacing:.05em;margin-bottom:.5rem}
+.project-name{font-size:15px;font-weight:500;color:#f4f4f4;margin-bottom:.5rem;line-height:1.35}
+.project-desc{font-size:13px;color:#8d8d8d;line-height:1.7;margin-bottom:.75rem;max-width:560px}
+.project-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.pill{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:.2rem .5rem;background:#262626;color:#8d8d8d;border:1px solid #393939}
+.project-links{display:flex;flex-direction:column;gap:.5rem;min-width:80px;align-items:flex-end}
+.p-link{font-size:12px;color:#78a9ff;white-space:nowrap;display:flex;align-items:center;gap:.3rem;transition:color .15s}
+.p-link:hover{color:#a6c8ff}
+.exp-list{display:flex;flex-direction:column;gap:0}
+.exp-row{display:grid;grid-template-columns:160px 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid #393939}
+.exp-row:first-child{border-top:1px solid #393939}
+.exp-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6f6f;padding-top:4px;line-height:1.6}
+.exp-type{font-size:10px;font-family:'IBM Plex Mono',monospace;padding:.15rem .5rem;border:1px solid #393939;color:#6f6f6f;display:inline-block;margin-bottom:.6rem;letter-spacing:.06em}
+.exp-type.blue{border-color:#0a3c7e;color:#78a9ff;background:#0a3c7e22}
+.exp-type.orange{border-color:#6d3a1a;color:#ff832b;background:#6d3a1a22}
+.exp-title{font-size:15px;font-weight:500;color:#f4f4f4;margin-bottom:.2rem}
+.exp-org{font-size:13px;color:#78a9ff;margin-bottom:.6rem}
+.exp-desc{font-size:13px;color:#8d8d8d;line-height:1.7;max-width:560px}
+.exp-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.edu-list{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #393939}
+.edu-card{padding:2rem}
+.edu-card:first-child{border-right:1px solid #393939}
+.edu-level{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#6f6f6f;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.edu-degree{font-size:16px;font-weight:500;color:#f4f4f4;margin-bottom:.3rem}
+.edu-school{font-size:13px;color:#78a9ff;margin-bottom:.25rem}
+.edu-year{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6f6f;margin-bottom:1rem}
+.edu-courses{display:flex;flex-wrap:wrap;gap:.4rem}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #393939}
+.contact-item{padding:1.5rem;border-right:1px solid #393939;transition:background .15s}
+.contact-item:last-child{border-right:none}
+.contact-item:hover{background:#1c1c1c}
+.contact-label{font-size:11px;color:#6f6f6f;letter-spacing:.1em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;margin-bottom:.6rem}
+.contact-val{font-size:13px;color:#78a9ff;word-break:break-all}
+.contact-val.plain{color:#c6c6c6}
+.footer{padding:2rem;background:#0f0f0f}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-quote{font-size:12px;color:#6f6f6f;font-style:italic;max-width:480px;line-height:1.6}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#525252}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.reveal.on{opacity:1;transform:none}
+@media(max-width:768px){
+  .hero-inner,.about-grid,.skills-grid,.edu-list{grid-template-columns:1fr}
+  .project-row{grid-template-columns:1fr}
+  .exp-row{grid-template-columns:1fr}
+  .project-links{flex-direction:row}
+  .contact-grid{grid-template-columns:1fr}
+  .contact-item{border-right:none;border-bottom:1px solid #393939}
+  .hero-meta{padding-left:0;border-left:none;padding-top:2rem;border-top:1px solid #393939}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">Muhammad Yoga Khairiansyah</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-tag mono">UNNES · Physics</p>
+        <h1 class="hero-name"><strong>Muhammad Yoga</strong><br>Khairiansyah</h1>
+        <p class="hero-role">Physics Student &nbsp;·&nbsp; Quantum Computing Researcher<br>Computational Physics &nbsp;·&nbsp; Physics Tutor</p>
+        <div class="hero-btns">
+          <a href="#" class="btn btn-primary">Download CV</a>
+          <a href="#contact" class="btn btn-ghost">Contact</a>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div>
+          <p class="hero-meta-label">Institution</p>
+          <p class="hero-meta-val">Universitas Negeri Semarang</p>
+        </div>
+        <div>
+          <p class="hero-meta-label">Semester</p>
+          <p class="hero-meta-val blue">6th Semester &nbsp;·&nbsp; Active</p>
+        </div>
+        <div>
+          <p class="hero-meta-label">Focus Area</p>
+          <p class="hero-meta-val">Computational Theoretical Physics</p>
+        </div>
+        <div>
+          <p class="hero-meta-label">Location</p>
+          <p class="hero-meta-val">Semarang &nbsp;·&nbsp; Indonesia</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section" id="about">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-num mono">01</span>
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="about-grid reveal">
+        <div class="about-body">
+          <p>Active 6th-semester physics undergraduate at <strong>Universitas Negeri Semarang (UNNES)</strong> with a strong orientation toward science and technology, focusing on <strong>computational theoretical physics</strong>.</p>
+          <p>Interested in modeling, analysis, and computational approaches to understand physical phenomena — from meteorological regression analysis to variational quantum algorithms on NISQ devices via Qiskit and IBM Quantum hardware.</p>
+          <p>Also active in public speaking as a <strong>Master of Ceremonies (MC)</strong> at campus events, and serves as a <strong>private physics tutor</strong> for SMA students (Grade 10 &amp; 11) with a focus on conceptual understanding and problem-solving.</p>
+        </div>
+        <div class="about-facts">
+          <div class="fact-row">
+            <span class="fact-label">Phone</span>
+            <span class="fact-val">0857-7910-3079</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Email</span>
+            <span class="fact-val" style="font-size:12px">yogakhairiansyah@students.unnes.ac.id</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Languages</span>
+            <span class="fact-val">Indonesia &nbsp;·&nbsp; English</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section" id="skills">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-num mono">02</span>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-col">
+          <p class="skill-col-title">Technical</p>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Python</span><span class="skill-pct">92%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="92%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Qiskit</span><span class="skill-pct">85%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="85%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Physics Simulation</span><span class="skill-pct">82%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="82%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Data Visualization</span><span class="skill-pct">80%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="80%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">HPC / Linux</span><span class="skill-pct">74%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="74%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Excel &amp; Tracker</span><span class="skill-pct">78%</span></div>
+            <div class="skill-track"><div class="skill-fill" data-w="78%"></div></div>
+          </div>
+          <div class="tags-wrap">
+            <span class="tag">NumPy</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Jupyter</span>
+            <span class="tag">SLURM</span>
+            <span class="tag">Bash</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <p class="skill-col-title">Soft Skills</p>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Public Speaking</span><span class="skill-pct">90%</span></div>
+            <div class="skill-track"><div class="skill-fill warm" data-w="90%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Communication</span><span class="skill-pct">88%</span></div>
+            <div class="skill-track"><div class="skill-fill warm" data-w="88%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Critical Thinking</span><span class="skill-pct">85%</span></div>
+            <div class="skill-track"><div class="skill-fill warm" data-w="85%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Physics Teaching</span><span class="skill-pct">82%</span></div>
+            <div class="skill-track"><div class="skill-fill warm" data-w="82%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-info"><span class="skill-name">Event Coordination</span><span class="skill-pct">80%</span></div>
+            <div class="skill-track"><div class="skill-fill warm" data-w="80%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section" id="projects">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-num mono">03</span>
+        <h2 class="section-title">Research &amp; Projects</h2>
+      </div>
+      <div class="projects-list reveal">
+
+        <div class="project-row">
+          <span class="project-idx mono">2025<br>Research</span>
+          <div>
+            <span class="project-badge">Published Research</span>
+            <p class="project-name">Analisis Hubungan Parameter Meteorologi Terhadap Potensi Hujan di Patemon, Gunungpati, Semarang</p>
+            <p class="project-desc">Regresi Linier Berganda untuk menganalisis korelasi parameter meteorologi (suhu, kelembaban, tekanan) terhadap potensi curah hujan di kawasan Gunungpati, Semarang.</p>
+            <div class="project-pills">
+              <span class="pill">Python</span>
+              <span class="pill">Multiple Linear Regression</span>
+              <span class="pill">Meteorologi</span>
+              <span class="pill">Data Analysis</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yogakhairiansyah-lgtm/PROJECT_YOGA" target="_blank" class="p-link mono">GitHub ↗</a>
+            <a href="#" class="p-link mono">Paper ↗</a>
+          </div>
+        </div>
+
+        <div class="project-row">
+          <span class="project-idx mono">Quantum<br>Research</span>
+          <div>
+            <p class="project-name">Variational Quantum Eigensolver for Molecular Systems</p>
+            <p class="project-desc">Implementasi VQE untuk menghitung ground state energy molekul kecil (H₂, LiH) menggunakan parameterized quantum circuits dan classical optimizer di IBM Quantum.</p>
+            <div class="project-pills">
+              <span class="pill">Qiskit</span>
+              <span class="pill">Python</span>
+              <span class="pill">NumPy</span>
+              <span class="pill">VQE</span>
+              <span class="pill">IBM Quantum</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yogakhairiansyah-lgtm/PROJECT_YOGA" target="_blank" class="p-link mono">GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project-row">
+          <span class="project-idx mono">Quantum<br>Research</span>
+          <div>
+            <p class="project-name">Quantum Dynamics Simulation using Qiskit</p>
+            <p class="project-desc">Simulasi evolusi waktu quantum state di bawah Hamiltonian dynamics menggunakan Trotterization dan Quantum Phase Estimation dengan visualisasi amplitudo probabilitas.</p>
+            <div class="project-pills">
+              <span class="pill">Qiskit</span>
+              <span class="pill">Trotterization</span>
+              <span class="pill">QPE</span>
+              <span class="pill">Matplotlib</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yogakhairiansyah-lgtm/PROJECT_YOGA" target="_blank" class="p-link mono">GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project-row">
+          <span class="project-idx mono">Quantum<br>Research</span>
+          <div>
+            <p class="project-name">Grover Algorithm Visualization</p>
+            <p class="project-desc">Visualisasi interaktif Grover's Amplitude Amplification — demonstrasi quadratic speedup dalam unstructured search dengan walkthrough circuit step-by-step.</p>
+            <div class="project-pills">
+              <span class="pill">Qiskit</span>
+              <span class="pill">Grover</span>
+              <span class="pill">Plotly</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yogakhairiansyah-lgtm/PROJECT_YOGA" target="_blank" class="p-link mono">GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project-row">
+          <span class="project-idx mono">HPC<br>Pipeline</span>
+          <div>
+            <p class="project-name">HPC-based Quantum Simulation Pipeline</p>
+            <p class="project-desc">Automated quantum circuit simulation pipeline dengan SLURM job scheduler pada HPC clusters — parallel job distribution dan result aggregation untuk large-scale simulation.</p>
+            <div class="project-pills">
+              <span class="pill">HPC</span>
+              <span class="pill">SLURM</span>
+              <span class="pill">Bash</span>
+              <span class="pill">Python</span>
+              <span class="pill">Linux</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yogakhairiansyah-lgtm/PROJECT_YOGA" target="_blank" class="p-link mono">GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project-row">
+          <span class="project-idx mono">Education<br>Tech</span>
+          <div>
+            <p class="project-name">Physics Education Interactive Materials</p>
+            <p class="project-desc">Materi belajar berbasis simulasi interaktif untuk siswa SMA — kinematika, osilasi, gelombang EM, dan fisika modern menggunakan animasi Python.</p>
+            <div class="project-pills">
+              <span class="pill">Python</span>
+              <span class="pill">Matplotlib</span>
+              <span class="pill">Jupyter</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yogakhairiansyah-lgtm/PROJECT_YOGA" target="_blank" class="p-link mono">GitHub ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section" id="experience">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-num mono">04</span>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="exp-list reveal">
+
+        <div class="exp-row">
+          <div><p class="exp-date">October 2025</p></div>
+          <div>
+            <span class="exp-type blue">Event · Leadership</span>
+            <p class="exp-title">Coordinator Grand Closing — Pekan Ilmiah Fisika Ke-35</p>
+            <p class="exp-org">Himpunan Mahasiswa Fisika · UNNES</p>
+            <p class="exp-desc">Mengkoordinasikan Grand Closing Pekan Ilmiah Fisika ke-35. Memimpin event secara profesional, menjaga suasana engaging, dan memastikan alur program sesuai rundown resmi.</p>
+            <div class="exp-pills">
+              <span class="pill">Coordination</span>
+              <span class="pill">Leadership</span>
+              <span class="pill">Public Speaking</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div><p class="exp-date">October 2024</p></div>
+          <div>
+            <span class="exp-type blue">MC · Event</span>
+            <p class="exp-title">Master of Ceremonies — PKMMTD FMIPA 2024</p>
+            <p class="exp-org">Fakultas MIPA · UNNES</p>
+            <p class="exp-desc">Memimpin sesi pembukaan dan penutupan, mengelola audience engagement, dan berkontribusi menciptakan lingkungan event yang antusias dan terorganisir.</p>
+            <div class="exp-pills">
+              <span class="pill">MC</span>
+              <span class="pill">Audience Engagement</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div><p class="exp-date">July 2024</p></div>
+          <div>
+            <span class="exp-type blue">MC · Event</span>
+            <p class="exp-title">Master of Ceremonies — UNNES Digital Fest 2024</p>
+            <p class="exp-org">Universitas Negeri Semarang</p>
+            <p class="exp-desc">Membawakan event secara profesional di salah satu event digital terbesar UNNES, menjaga suasana engaging dan memastikan program berjalan sesuai rundown.</p>
+            <div class="exp-pills">
+              <span class="pill">MC</span>
+              <span class="pill">Communication</span>
+              <span class="pill">Digital Event</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div><p class="exp-date">2023 – Present</p></div>
+          <div>
+            <span class="exp-type orange">Freelance · Teaching</span>
+            <p class="exp-title">Private Physics Tutor</p>
+            <p class="exp-org">Freelance · Jakarta &amp; Semarang</p>
+            <p class="exp-desc">Mengajar fisika untuk siswa SMA kelas 10 dan 11. Fokus pada pemahaman konseptual melalui problem-solving dan mengembangkan materi berbasis simulasi.</p>
+            <div class="exp-pills">
+              <span class="pill">Fisika SMA</span>
+              <span class="pill">Grade 10–11</span>
+              <span class="pill">Curriculum Design</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-row">
+          <div><p class="exp-date">2023 – Present</p></div>
+          <div>
+            <span class="exp-type blue">Research · Self-directed</span>
+            <p class="exp-title">Quantum Computing Researcher</p>
+            <p class="exp-org">Independent · Remote</p>
+            <p class="exp-desc">Self-directed research: VQE, Grover's Algorithm, Quantum Dynamics, dan simulation pipeline menggunakan Qiskit pada IBM Quantum hardware nyata.</p>
+            <div class="exp-pills">
+              <span class="pill">Qiskit</span>
+              <span class="pill">IBM Quantum</span>
+              <span class="pill">VQE</span>
+              <span class="pill">HPC</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section" id="education">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-num mono">05</span>
+        <h2 class="section-title">Education</h2>
+      </div>
+      <div class="edu-list reveal">
+        <div class="edu-card">
+          <p class="edu-level">Undergraduate · S1</p>
+          <p class="edu-degree">S1 Fisika — Physics</p>
+          <p class="edu-school">Universitas Negeri Semarang</p>
+          <p class="edu-year">2023 – Present &nbsp;·&nbsp; Semarang</p>
+          <div class="edu-courses">
+            <span class="pill">Quantum Mechanics</span>
+            <span class="pill">Computational Physics</span>
+            <span class="pill">Electrodynamics</span>
+            <span class="pill">Statistical Physics</span>
+            <span class="pill">Mathematical Physics</span>
+          </div>
+        </div>
+        <div class="edu-card">
+          <p class="edu-level">Senior High School · SMA</p>
+          <p class="edu-degree">SMA Jurusan IPA</p>
+          <p class="edu-school" style="color:#ff832b">SMA Muhammadiyah 4 Jakarta</p>
+          <p class="edu-year">2020 – 2023 &nbsp;·&nbsp; East Jakarta</p>
+          <div class="edu-courses">
+            <span class="pill">Science Track</span>
+            <span class="pill">Fisika</span>
+            <span class="pill">Kimia</span>
+            <span class="pill">Matematika</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section" id="contact">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-num mono">06</span>
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <p style="font-size:14px;color:#8d8d8d;margin-bottom:2rem;font-weight:300">Open to research collaborations, tutoring inquiries, and quantum computing discussions.</p>
+      <div class="contact-grid reveal">
+        <a href="tel:+6285779103079" class="contact-item">
+          <p class="contact-label">Phone / WhatsApp</p>
+          <p class="contact-val plain">0857-7910-3079</p>
+        </a>
+        <a href="mailto:yogakhairiansyah@students.unnes.ac.id" class="contact-item">
+          <p class="contact-label">Email</p>
+          <p class="contact-val" style="font-size:12px">yogakhairiansyah@students.unnes.ac.id</p>
+        </a>
+        <a href="https://github.com/yogakhairiansyah-lgtm/PROJECT_YOGA" target="_blank" class="contact-item">
+          <p class="contact-label">GitHub</p>
+          <p class="contact-val" style="font-size:12px">yogakhairiansyah-lgtm</p>
+        </a>
+        <a href="https://www.linkedin.com/in/muhammad-yoga-3b2038284" target="_blank" class="contact-item">
+          <p class="contact-label">LinkedIn</p>
+          <p class="contact-val" style="font-size:12px">muhammad-yoga-3b2038284</p>
+        </a>
+        <a href="https://instagram.com/mhmd_yoga19" target="_blank" class="contact-item">
+          <p class="contact-label">Instagram</p>
+          <p class="contact-val">@mhmd_yoga19</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-inner">
+      <p class="footer-quote">"If quantum mechanics hasn't profoundly shocked you, you haven't understood it yet." — Niels Bohr</p>
+      <p class="footer-copy mono">© 2025 Muhammad Yoga Khairiansyah &nbsp;·&nbsp; UNNES</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        e.target.querySelectorAll('.skill-fill').forEach(b => {
+          b.style.width = b.getAttribute('data-w');
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
